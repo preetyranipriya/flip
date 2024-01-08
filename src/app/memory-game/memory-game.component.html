@@ -1,0 +1,32 @@
+<body>
+<div class="memory-game" [ngStyle]="{'display': 'grid', 'grid-template-columns': 'repeat(' + columns + ', 130px)', 'grid-gap': '18px','margin': '12px auto',
+'max-width': '500px'}">
+  <div *ngFor="let card of cards" (click)="flipCard(card)">
+    <img *ngIf="card.flipped && !card.vanish" [src]="card.imageUrl" alt="Card">
+    <div *ngIf="!card.flipped" class="card-back"></div>
+  </div>
+</div>
+
+
+<div class="game-info">
+  <label for="levelSelect">Select Level:</label>
+  <select id="levelSelect" [(ngModel)]="userSelectedLevel" (ngModelChange)="onLevelChange()">
+    <option id="a" value="1">Level 1</option>
+    <option id="b" value="2">Level 2</option>
+    <option id="c" value="3">Level 3</option>
+    <option id="d" value="4">Level 4</option>
+    <!-- Add more options for additional levels if needed -->
+  </select>
+  <div class="option">
+
+  <!-- Display other game information -->
+  <p>Level: {{ userSelectedLevel }}</p>
+
+  <p>Moves: {{ moves }}</p>
+  <p>Misses: {{ misses }}</p>
+  <p>Rounds Played: {{ roundsPlayed }}</p>
+  <p>Knowledge Points: {{ knowledgePoints }}</p>
+  <p>Accuracy: {{ accuracy }}%</p>
+</div>
+</div>
+</body>
